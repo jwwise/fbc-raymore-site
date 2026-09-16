@@ -24,9 +24,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      # These majors all run on the node24 action runtime. Older majors run on
+      # node20, which GitHub has deprecated and warns about on every run. When
+      # bumping, check that configure-pages still exposes `origin` and
+      # `base_path` -- the build reads both.
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
@@ -36,7 +40,7 @@ jobs:
       # Must run before the build: it reports where Pages will actually serve
       # this site, which the build needs in order to write correct URLs.
       - id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       # While this is a project site the origin is <owner>.github.io and the
       # prefix is /fbc-raymore-site/. Once the custom domain is set in
@@ -48,9 +52,13 @@ jobs:
           BASE_ORIGIN: ${{ steps.pages.outputs.origin }}
           PATH_PREFIX: ${{ steps.pages.outputs.base_path }}
 
-      - uses: actions/upload-pages-artifact@v3
+      # include-hidden-files ships src/static/.nojekyll, which upload-artifact
+      # would otherwise skip. It is belt-and-braces: Pages does not run Jekyll
+      # on an Actions-published artifact, so nothing depends on it today.
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
+          include-hidden-files: true
 
   deploy:
     needs: build
@@ -60,4 +68,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
