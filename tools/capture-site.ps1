@@ -93,17 +93,27 @@ while ($queue.Count -gt 0 -and $pages.Count -lt $MaxPages) {
     })
 
     # --- collect images referenced by this page ---
-    foreach ($m in [regex]::Matches($html, '(?:src|href)\s*=\s*"([^"]*/images/[^"]+)"')) {
-        $abs = [Uri]::new([Uri]$url, $m.Groups[1].Value).AbsoluteUri
-        if (([Uri]$abs).Host -eq $baseHost) { $images.Add($abs) | Out-Null }
-    }
-    foreach ($m in [regex]::Matches($html, 'url\((?:''|")?([^''")]*/images/[^''")]+)')) {
-        $abs = [Uri]::new([Uri]$url, $m.Groups[1].Value).AbsoluteUri
-        if (([Uri]$abs).Host -eq $baseHost) { $images.Add($abs) | Out-Null }
+    # The template mixes single- and double-quoted attributes (the logo uses single),
+    # and srcset packs several URLs into one attribute, so match per-URL not per-attribute.
+    $imgPatterns = @(
+        '(?:src|srcset|href)\s*=\s*"([^"]*/images/[^"]+)"',
+        "(?:src|srcset|href)\s*=\s*'([^']*/images/[^']+)'",
+        'url\((?:''|")?([^''")]*/images/[^''")]+)'
+    )
+    foreach ($pattern in $imgPatterns) {
+        foreach ($m in [regex]::Matches($html, $pattern)) {
+            # A srcset value is "url 1x, url 2x"; split it and drop the descriptors.
+            foreach ($candidate in ($m.Groups[1].Value -split ',')) {
+                $u = ($candidate.Trim() -split '\s+')[0]
+                if (-not $u) { continue }
+                try { $abs = [Uri]::new([Uri]$url, $u) } catch { continue }
+                if ($abs.Host -eq $baseHost) { $images.Add($abs.GetLeftPart([UriPartial]::Path)) | Out-Null }
+            }
+        }
     }
 
     # --- enqueue same-host page links ---
-    foreach ($m in [regex]::Matches($html, '<a\b[^>]*href\s*=\s*"([^"#][^"]*)"')) {
+    foreach ($m in [regex]::Matches($html, '<a\b[^>]*href\s*=\s*["'']([^"''#][^"'']*)["'']')) {
         $href = $m.Groups[1].Value
         if ($href -match '^(mailto:|tel:|javascript:)') { continue }
         try { $abs = [Uri]::new([Uri]$url, $href) } catch { continue }

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if title %}{{ title }} &middot; {{ church.name }}{% else %}{{ church.name }} of Raymore, Missouri{% endif %}</title>
+<meta name="description" content="{{ description or church.tagline }}">
+<link rel="canonical" href="{{ page.url | absoluteUrl(church.url) }}">
+<link rel="icon" href="/assets/images/favicon-32x32.png" sizes="32x32">
+<link rel="stylesheet" href="/assets/css/site.css">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ church.nameFull }}">
+<meta property="og:title" content="{% if title %}{{ title }} &middot; {{ church.name }}{% else %}{{ church.nameFull }}{% endif %}">
+<meta property="og:description" content="{{ description or church.tagline }}">
+<meta property="og:url" content="{{ page.url | absoluteUrl(church.url) }}">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Church",
+  "name": "{{ church.nameFull }}",
+  "url": "{{ church.url }}",
+  "telephone": "{{ church.phone }}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ church.address.street }}",
+    "addressLocality": "{{ church.address.city }}",
+    "addressRegion": "{{ church.address.stateAbbr }}",
+    "postalCode": "{{ church.address.zip }}",
+    "addressCountry": "US"
+  },
+  "sameAs": ["{{ church.social.youtube }}", "{{ church.social.facebook }}"]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="/">
+      <img class="brand__mark" src="/assets/images/logo.png" alt="Faith Baptist Church" width="180" height="45">
+    </a>
+
+    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle__btn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </label>
+
+    <nav class="nav" aria-label="Main">
+      <ul>
+        {%- set nav = [
+          { url: "/visit/",        label: "Plan a Visit" },
+          { url: "/about-us/",     label: "About Us" },
+          { url: "/ministries/",   label: "Ministries" },
+          { url: "/sermons/",      label: "Sermons" }
+        ] -%}
+        {%- for item in nav %}
+        <li>
+          <a href="{{ item.url }}"{% if page.url.startsWith(item.url) %} aria-current="page"{% endif %}>{{ item.label }}</a>
+        </li>
+        {%- endfor %}
+        <li><a class="nav__cta" href="{{ church.social.youtubeLive }}">Watch Live</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  {{ content | safe }}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__grid">
+    <div>
+      <h2>{{ church.nameFull }}</h2>
+      <p class="footer-addr">
+        {{ church.address.street }}<br>
+        {{ church.address.city }}, {{ church.address.stateAbbr }} {{ church.address.zip }}
+      </p>
+      <p><a href="{{ church.phoneHref }}">{{ church.phone }}</a></p>
+      <p class="footer-note">
+        Mail: {{ church.mailing.line }}<br>
+        <em>{{ church.mailing.note }}</em>
+      </p>
+    </div>
+
+    <div>
+      <h2>Service Times</h2>
+      {%- for group in church.services | groupByDay %}
+      <p class="footer-svc">
+        <strong>{{ group.day }}</strong><br>
+        {%- for s in group.items %}
+        {{ s.time }} &mdash; {{ s.name }}{% if not loop.last %}<br>{% endif %}
+        {%- endfor %}
+      </p>
+      {%- endfor %}
+    </div>
+
+    <div>
+      <h2>Connect</h2>
+      <ul class="footer-links">
+        <li><a href="{{ church.social.youtubeLive }}">Watch live on YouTube</a></li>
+        <li><a href="{{ church.social.youtube }}">Past services</a></li>
+        <li><a href="{{ church.social.facebook }}">Facebook</a></li>
+        <li><a href="{{ church.address.directionsUrl }}">Get directions</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wrap site-footer__bar">
+    <p>&copy; {% year %} {{ church.nameFull }}</p>
+  </div>
+</footer>
+
+</body>
+</html>

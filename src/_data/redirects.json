@@ -1,0 +1,4 @@
+[
+  { "from": "/about-us/contact-form/index.html", "to": "/visit/" },
+  { "from": "/search/index.html", "to": "/" }
+]

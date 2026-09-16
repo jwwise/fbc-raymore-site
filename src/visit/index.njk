@@ -1,0 +1,87 @@
+---
+layout: layouts/base.njk
+title: Plan a Visit
+description: "Service times, directions, and what to expect when you visit Faith Baptist Church of Raymore, Missouri."
+---
+
+<div class="page-head">
+  <div class="wrap">
+    <p class="page-head__eyebrow">Plan a visit</p>
+    <h1>We would be glad to have you</h1>
+    <p class="page-head__lede">Come as you are. Here is everything you need to find us and know what to expect.</p>
+  </div>
+</div>
+
+<div class="wrap prose">
+  <div class="full-width">
+    <h2>Service times</h2>
+    <div class="times__grid">
+      {%- for service in church.services %}
+      <div class="time-card">
+        <p class="time-card__day">{{ service.day }}</p>
+        <span class="time-card__time">{{ service.time }}</span>
+        <p class="time-card__name">{{ service.name }}</p>
+        {%- if service.note %}<span class="time-card__note">For {{ service.note }}</span>{% endif %}
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+
+  {#
+    Column split is chosen to balance height: the map plus the three short
+    contact blocks on the left, the three prose blocks on the right.
+  #}
+  <div class="visit-grid">
+    <div>
+      <a class="map-link" href="{{ church.address.mapUrl }}">
+        <img src="/assets/images/Map.png" alt="Map showing Faith Baptist Church at 414 S. Franklin Street, Raymore, Missouri" loading="lazy">
+        <span>Open in Google Maps</span>
+      </a>
+
+      <div class="info-block">
+        <h2>Where we meet</h2>
+        <address>
+          {{ church.address.street }}<br>
+          {{ church.address.city }}, {{ church.address.state }} {{ church.address.zip }}
+        </address>
+        <p><a class="btn btn--outline" href="{{ church.address.directionsUrl }}">Get directions</a></p>
+      </div>
+
+      <div class="info-block">
+        <h2>Get in touch</h2>
+        <p>The best way to reach us is by phone. Call the church office and we will be happy to answer any question you have before you visit.</p>
+        <p><strong><a href="{{ church.phoneHref }}">{{ church.phone }}</a></strong></p>
+      </div>
+
+      <div class="info-block">
+        <h2>Mailing address</h2>
+        <address>{{ church.mailing.line }}</address>
+        <p><em>{{ church.mailing.note }}</em></p>
+      </div>
+    </div>
+
+    <div>
+      <div class="info-block">
+        <h2>What to expect</h2>
+        <p>You will find a warm and friendly congregation, singing from the hymnal, and preaching straight from the Bible. There is no dress code and no pressure &mdash; we are simply glad when someone comes to worship with us.</p>
+      </div>
+
+      <div class="info-block">
+        <h2>Bringing children?</h2>
+        <p>A clean and secure nursery is available for ages 0&ndash;3 during every worship service, and there are Sunday School classes for every age. All of our children&rsquo;s workers have approved background checks along with experience and training in children&rsquo;s ministry.</p>
+        <p><a href="/ministries/children-s-ministry/">About our children&rsquo;s ministry</a></p>
+      </div>
+
+      <div class="info-block">
+        <h2>Watch first</h2>
+        <p>If you would rather see a service before visiting, our services are streamed live and archived on YouTube.</p>
+        <p><a href="{{ church.social.youtube }}">Visit our YouTube channel</a></p>
+      </div>
+
+      <div class="info-block">
+        <h2>Questions before you come?</h2>
+        <p>Call us at <a href="{{ church.phoneHref }}">{{ church.phone }}</a>, or read more <a href="/about-us/what-we-believe/">about what we believe</a> and <a href="/about-us/meet-our-staff/">who serves here</a>.</p>
+      </div>
+    </div>
+  </div>
+</div>

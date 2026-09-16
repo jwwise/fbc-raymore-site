@@ -1,0 +1,33 @@
+---
+layout: layouts/base.njk
+title: Page Not Found
+permalink: /404.html
+eleventyExcludeFromCollections: true
+---
+
+<div class="page-head">
+  <div class="wrap">
+    <p class="page-head__eyebrow">404</p>
+    <h1>We couldn&rsquo;t find that page</h1>
+    <p class="page-head__lede">The page may have moved when we rebuilt our website. Here is where to look instead.</p>
+  </div>
+</div>
+
+<div class="wrap prose">
+  <h2>Looking for a sermon?</h2>
+
+  <p>Our sermon recordings now live on our YouTube channel, where you can watch or listen to past services and find our live stream.</p>
+
+  <p><a class="btn btn--outline" href="{{ church.social.youtube }}">Browse our YouTube channel</a></p>
+
+  <h2>Looking for something else?</h2>
+
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/visit/">Plan a visit</a> &mdash; service times, directions, and our phone number</li>
+    <li><a href="/about-us/">About us</a> &mdash; our staff, beliefs, and history</li>
+    <li><a href="/ministries/">Ministries</a></li>
+  </ul>
+
+  <p>You are also welcome to call us at <a href="{{ church.phoneHref }}">{{ church.phone }}</a>.</p>
+</div>

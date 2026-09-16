@@ -1,0 +1,46 @@
+{
+  "name": "Faith Baptist Church",
+  "nameFull": "Faith Baptist Church of Raymore",
+  "shortName": "Faith Baptist",
+  "tagline": "An independent, Bible-believing Baptist church in Raymore, Missouri",
+  "url": "https://www.faithbaptistraymore.org",
+
+  "phone": "(816) 322-0207",
+  "phoneHref": "tel:+18163220207",
+
+  "address": {
+    "street": "414 S. Franklin Street",
+    "city": "Raymore",
+    "state": "Missouri",
+    "stateAbbr": "MO",
+    "zip": "64083",
+    "mapUrl": "https://www.google.com/maps/search/?api=1&query=414+S+Franklin+Street+Raymore+MO+64083",
+    "directionsUrl": "https://www.google.com/maps/dir/?api=1&destination=414+S+Franklin+Street+Raymore+MO+64083"
+  },
+
+  "mailing": {
+    "line": "PO Box 313, Raymore, MO 64083",
+    "note": "We do not accept mail at our physical location."
+  },
+
+  "services": [
+    { "day": "Sunday",    "time": "9:30 am",  "name": "Sunday School" },
+    { "day": "Sunday",    "time": "10:45 am", "name": "Worship Service" },
+    { "day": "Sunday",    "time": "6:00 pm",  "name": "Evening Service" },
+    { "day": "Wednesday", "time": "6:45 pm",  "name": "Master Clubs", "note": "children" },
+    { "day": "Wednesday", "time": "7:00 pm",  "name": "Adult & Youth Prayer and Bible Study" }
+  ],
+
+  "social": {
+    "youtube": "https://www.youtube.com/channel/UCKesAFFfjb1aJjalSiEELQA",
+    "youtubeLive": "https://www.youtube.com/channel/UCKesAFFfjb1aJjalSiEELQA/live",
+    "facebook": "https://www.facebook.com/pages/Faith-Baptist-Church-of-Raymore/103920613037485"
+  },
+
+  "pastor": {
+    "name": "Pastor Michael Wessberg",
+    "signature": "Pastor Wessberg"
+  },
+
+  "mission": "The mission of Faith Baptist Church is to impact our community and proclaim Jesus Christ to those who may not know Him, instruct them as they grow in the Lord, include them in the fellowship of our church, involve them in opportunities to serve, using their unique gifts and abilities, and inspire them to be all they can be for the Lord."
+}

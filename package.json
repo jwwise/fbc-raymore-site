@@ -1,0 +1,19 @@
+{
+  "name": "fbc-raymore-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static site for Faith Baptist Church of Raymore, Missouri",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "capture": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/capture-site.ps1",
+    "extract": "node tools/extract-content.mjs"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

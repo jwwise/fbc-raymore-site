@@ -20,23 +20,100 @@ Two hard constraints follow from that, and they drive most decisions here:
    details change. Editing a Markdown/YAML file through the GitHub web UI is the
    expected workflow — not a local toolchain.
 
+## Decisions made
+
+Settled 2026-09-16. Do not relitigate these without asking.
+
+| Question | Decision |
+| --- | --- |
+| Generator | **Eleventy**, built and deployed by GitHub Actions on push to `main` |
+| Sermon archive | **Not migrated.** Link out to the existing YouTube channel for both live stream and past sermons. |
+| Contact form | **Removed.** Replaced with phone, both addresses, service times, and a map link — no third-party form service. |
+| Visual design | **Fresh, modern redesign.** Keep the copy and photos; rebuild the presentation. Mobile-first, service times above the fold. |
+
+Consequences worth remembering:
+
+- Volunteers edit Markdown in `src/` through the GitHub web UI; Actions rebuilds and
+  publishes. No local toolchain is required to make a content change.
+- Site-wide facts (address, phone, service times, social links) live in **one** data file,
+  `src/_data/church.json`, so a service-time change is a single edit. Never hard-code
+  these into templates.
+- The sermon audio on the old Joomla host is **not preserved anywhere by this repo**. If
+  that host is cancelled, 1,609 recordings are lost unless they already exist on YouTube.
+  Raise this before any DNS cutover.
+
 ## Repository layout
 
 | Path | What it is |
 | --- | --- |
+| `src/` | **The new site.** Eleventy input. |
+| `src/_data/church.json` | Every site-wide fact: address, phone, service times, social links. |
+| `src/_data/redirects.json` | Old Joomla URLs → new URLs, rendered as meta-refresh stubs. |
+| `src/_includes/layouts/` | `base.njk` (shell), `page.njk` (prose pages), `redirect.njk`. |
+| `src/assets/` | CSS and images, copied through verbatim. |
+| `src/static/` | Files served from the site root (`robots.txt`, `.nojekyll`). |
+| `eleventy.config.mjs` | Build config and the `groupByDay` / `serviceTime` / `absoluteUrl` filters. |
 | `archive/html/` | Raw HTML of every page of the live Joomla site, as captured. **Read-only reference.** |
-| `archive/images/` | Every image referenced by those pages (42 files). |
+| `archive/images/` | Every image referenced by those pages (43 files). |
 | `archive/manifest.json` | Crawl metadata: URLs, HTTP status, titles, byte counts. |
-| `content/*.md` | The archived pages converted to Markdown with YAML front matter. This is the **source of truth for migrating copy** into the new site. |
+| `content/*.md` | The archived pages converted to Markdown. The **record of what the old site said**; the rebuild is checked against it. |
 | `tools/capture-site.ps1` | The crawler that produced `archive/`. Re-runnable. |
 | `tools/extract-content.mjs` | Converts `archive/html/` → `content/`. Re-runnable. |
 
-Regenerate the capture with:
+Build and preview (requires Node 18+; developed on Node 24 LTS):
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File tools/capture-site.ps1
-node tools/extract-content.mjs
+npm install
+npm run build     # -> _site/
+npm run serve     # http://localhost:8080
 ```
+
+Regenerate the capture of the old site with:
+
+```powershell
+npm run capture
+npm run extract
+```
+
+## Site structure
+
+Old Joomla URLs are **preserved** wherever the page still exists, so existing
+inbound links and search rankings survive the migration. Only two URLs changed,
+and both have redirect stubs.
+
+| URL | Source |
+| --- | --- |
+| `/` | `src/index.njk` |
+| `/visit/` | `src/visit/index.njk` — new; replaces the old PHP contact form |
+| `/about-us/` | `src/about-us/index.njk` |
+| `/about-us/meet-our-staff/` | unchanged URL |
+| `/about-us/what-we-believe/` | unchanged URL |
+| `/about-us/our-history/` | unchanged URL |
+| `/ministries/` and all children | unchanged URLs |
+| `/sermons/` | now a page of links out to YouTube |
+| `/about-us/contact-form/` | redirect stub → `/visit/` |
+| `/search/` | redirect stub → `/` |
+
+GitHub Pages cannot issue HTTP 3xx, which is why changed URLs get meta-refresh
+stubs with `noindex` plus a canonical tag. Add new ones to
+`src/_data/redirects.json`, not as hand-written files.
+
+The ~1,609 old `/sermons/sermon/...` URLs are **not** redirected — there are too
+many to enumerate. `/404.html` points those visitors at the YouTube channel
+instead.
+
+## Conventions for the new site
+
+- **No JavaScript.** The mobile menu is a checkbox-and-CSS toggle. Keep it that
+  way; there is nothing on this site that needs a script, and volunteers cannot
+  debug one.
+- **One stylesheet**, `src/assets/css/site.css`, with custom properties at the
+  top. No framework, no preprocessor, no asset pipeline.
+- Never hard-code a service time, phone number, or address in a template. Read it
+  from `church.json`, using the `serviceTime` filter for a single service or
+  `groupByDay` for a grouped list.
+- Images are served at their original pixel size; there is no responsive-image
+  pipeline. `logo.png` is a copy of the old site's `logo_final_whitetext.png`.
 
 ## Facts captured from the live site
 

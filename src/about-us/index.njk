@@ -1,0 +1,57 @@
+---
+layout: layouts/base.njk
+title: About Us
+description: "Learn about Faith Baptist Church of Raymore, Missouri: our pastor and staff, what we believe, and our history since 1996."
+---
+
+<div class="page-head">
+  <div class="wrap">
+    <p class="page-head__eyebrow">About us</p>
+    <h1>An independent, Bible-believing Baptist church</h1>
+    <p class="page-head__lede">Faith Baptist Church has served Raymore since 1996. We believe the Scriptures are the final authority for faith and life.</p>
+  </div>
+</div>
+
+<section class="cards">
+  <div class="wrap">
+    <div class="cards__grid">
+      {%- set pages = [
+        { url: "/about-us/meet-our-staff/", img: "/assets/images/MeetOurStaff.jpg", title: "Meet Our Staff",
+          text: "Get to know Pastor Michael Wessberg and our music director, Jim Stephens." },
+        { url: "/about-us/what-we-believe/", img: "/assets/images/WhatWeBelieve.jpg", title: "What We Believe",
+          text: "Our statement of faith on the Bible, God, salvation, eternal security, and the local church." },
+        { url: "/about-us/our-history/", img: "/assets/images/OurHistory.jpg", title: "Our History",
+          text: "From a handful of families in 1996 to the congregation that meets on Franklin Street today." },
+        { url: "/visit/", img: "/assets/images/ContactUs.jpg", title: "Plan a Visit",
+          text: "Service times, directions, our phone number, and what to expect when you come." }
+      ] -%}
+
+      {%- for item in pages %}
+      <article class="card card--link">
+        <img class="card__img" src="{{ item.img }}" alt="" loading="lazy">
+        <div class="card__body">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+          <a class="card__link" href="{{ item.url }}">Read more</a>
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="welcome">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="section-head__eyebrow">Our mission</p>
+      <h2>Five things we aim to do</h2>
+    </div>
+    <ul class="mission-list">
+      <li><strong>Impact</strong> our community and proclaim Jesus Christ to those who may not know Him</li>
+      <li><strong>Instruct</strong> them as they grow in the Lord</li>
+      <li><strong>Include</strong> them in the fellowship of our church</li>
+      <li><strong>Involve</strong> them in opportunities to serve, using their unique gifts and abilities</li>
+      <li><strong>Inspire</strong> them to be all they can be for the Lord</li>
+    </ul>
+  </div>
+</section>

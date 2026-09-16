@@ -1,0 +1,53 @@
+---
+layout: layouts/base.njk
+title: Sermons
+description: "Watch Faith Baptist Church of Raymore live, or browse past services on our YouTube channel."
+---
+
+<div class="page-head">
+  <div class="wrap">
+    <p class="page-head__eyebrow">Sermons</p>
+    <h1>Watch live, or catch up any time</h1>
+    <p class="page-head__lede">Our services are streamed live on YouTube and stay available on our channel afterwards.</p>
+  </div>
+</div>
+
+<div class="wrap prose">
+  <h2>Live stream</h2>
+
+  <p>Sunday morning worship, Sunday evening, and our Wednesday evening Bible study are streamed as they happen. If a service is not currently live, the link below will show you the most recent one.</p>
+
+  <p><a class="btn btn--outline" href="{{ church.social.youtubeLive }}">Watch the live stream</a></p>
+
+  <h2>Past services</h2>
+
+  <p>Our YouTube channel holds recordings of previous services &mdash; Sunday School, Sunday morning and evening worship, Wednesday evening Bible study, and special services such as our revival and missions conference meetings.</p>
+
+  <p><a class="btn btn--outline" href="{{ church.social.youtube }}">Browse our YouTube channel</a></p>
+
+  <h2>When we meet</h2>
+
+  <div class="full-width">
+    <div class="times__grid">
+      {%- for service in church.services %}
+      <div class="time-card">
+        <p class="time-card__day">{{ service.day }}</p>
+        <span class="time-card__time">{{ service.time }}</span>
+        <p class="time-card__name">{{ service.name }}</p>
+        {%- if service.note %}<span class="time-card__note">For {{ service.note }}</span>{% endif %}
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</div>
+
+<section class="visit-cta">
+  <div class="wrap">
+    <h2>We would love to meet you</h2>
+    <p>{{ church.address.street }} &middot; {{ church.address.city }}, {{ church.address.stateAbbr }}</p>
+    <p class="visit-cta__actions">
+      <a class="btn btn--light" href="/visit/">Plan your visit</a>
+      <a class="btn btn--ghost" href="{{ church.phoneHref }}">{{ church.phone }}</a>
+    </p>
+  </div>
+</section>

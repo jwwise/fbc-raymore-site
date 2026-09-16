@@ -1,0 +1,124 @@
+---
+layout: layouts/base.njk
+description: "Faith Baptist Church of Raymore is a warm and friendly, Bible-believing, family-oriented church in Raymore, Missouri. Sunday School 9:30 am, Worship 10:45 am."
+---
+
+<section class="hero">
+  <img class="hero__img" src="/assets/images/headers/15.-group-1.jpg" alt="" width="980" height="350" fetchpriority="high">
+  <div class="wrap hero__inner">
+    <blockquote class="hero__verse">
+      &ldquo;This is my commandment, That ye love one another, as I have loved you.&rdquo;
+      <cite>John 15:12</cite>
+    </blockquote>
+    <h1>You are welcome at Faith Baptist</h1>
+    <p class="hero__tagline">{{ church.tagline }}.</p>
+    <p class="hero__actions">
+      <a class="btn btn--primary" href="/visit/">Plan your visit</a>
+      <a class="btn btn--ghost" href="{{ church.social.youtubeLive }}">Watch live</a>
+    </p>
+  </div>
+</section>
+
+<section class="times">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="section-head__eyebrow">Join us</p>
+      <h2>Service times</h2>
+      <p>Come as you are. There is a class and a seat for every age, and a clean, staffed nursery for our youngest guests.</p>
+    </div>
+
+    <div class="times__grid">
+      {%- for service in church.services %}
+      <div class="time-card">
+        <p class="time-card__day">{{ service.day }}</p>
+        <span class="time-card__time">{{ service.time }}</span>
+        <p class="time-card__name">{{ service.name }}</p>
+        {%- if service.note %}<span class="time-card__note">For {{ service.note }}</span>{% endif %}
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="welcome">
+  <div class="wrap welcome__grid">
+    <img class="welcome__photo" src="/assets/images/Pastor.jpg" alt="Pastor Michael Wessberg" width="360" height="420" loading="lazy">
+
+    <div class="welcome__body">
+      <div class="section-head">
+        <p class="section-head__eyebrow">A word from our pastor</p>
+        <h2>Welcome to Faith Baptist</h2>
+      </div>
+
+      <p>Our church family would like to welcome you to Faith Baptist Church. We trust that you would find Faith to be a warm and friendly, exciting and growing, Bible believing, Bible preaching family-oriented church.</p>
+
+      <p>The mission of Faith Baptist Church is to:</p>
+
+      <ul class="mission-list">
+        <li><strong>Impact</strong> our community and proclaim Jesus Christ to those who may not know Him</li>
+        <li><strong>Instruct</strong> them as they grow in the Lord</li>
+        <li><strong>Include</strong> them in the fellowship of our church</li>
+        <li><strong>Involve</strong> them in opportunities to serve, using their unique gifts and abilities</li>
+        <li><strong>Inspire</strong> them to be all they can be for the Lord</li>
+      </ul>
+
+      <p>If you do not have a church home, or are looking for a new one, we would be honored to have you consider coming to worship with us. We believe Faith Baptist Church to be a great place for you and your family!</p>
+
+      <p class="signoff">
+        To be a reflection of Him,
+        <strong>{{ church.pastor.signature }}</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="cards">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="section-head__eyebrow">Ministries</p>
+      <h2>A place for every member of your family</h2>
+    </div>
+
+    <div class="cards__grid">
+      {%- set featured = [
+        { url: "/ministries/children-s-ministry/", img: "/assets/images/children1.jpg", title: "Children's Ministry",
+          text: "Sunday School, Master Clubs, and a staffed nursery. All of our workers hold approved background checks." },
+        { url: "/ministries/youth-ministry/", img: "/assets/images/TeenChoir.jpg", title: "Youth Ministry",
+          text: "Biblical ministry to junior high and high school teens that challenges them and points them to Christ." },
+        { url: "/ministries/music-ministry/", img: "/assets/images/CongregationSinging.jpg", title: "Music Ministry",
+          text: "Congregational singing at the heart of our worship, with words that are doctrinal and God-honoring." },
+        { url: "/ministries/ladies-ministry/", img: "/assets/images/LadiesBanquet3.jpg", title: "Ladies Ministry",
+          text: "The Titus 2 Sisters Bible study, an annual banquet, a retreat, and many ways to serve and connect." },
+        { url: "/ministries/missions/", img: "/assets/images/missions1.jpg", title: "Missions",
+          text: "We support twenty missionaries around the world and host a missions conference every year." },
+        { url: "/about-us/what-we-believe/", img: "/assets/images/bible-39.jpg", title: "What We Believe",
+          text: "The Scriptures are the final authority for faith and life. Read our statement of faith." }
+      ] -%}
+
+      {%- for item in featured %}
+      <article class="card card--link">
+        <img class="card__img" src="{{ item.img }}" alt="" loading="lazy">
+        <div class="card__body">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+          <a class="card__link" href="{{ item.url }}">Learn more</a>
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="watch">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="section-head__eyebrow">Sermons</p>
+      <h2>Can&rsquo;t be with us in person?</h2>
+    </div>
+    <p>Our services are streamed live on YouTube, and past services stay available on our channel so you can watch or listen any time.</p>
+    <p class="watch__actions">
+      <a class="btn btn--primary" href="{{ church.social.youtubeLive }}">Watch live</a>
+      <a class="btn btn--ghost" href="{{ church.social.youtube }}">Browse past services</a>
+    </p>
+  </div>
+</section>

@@ -1,9 +1,9 @@
 ﻿{
     "source":  "https://www.faithbaptistraymore.org",
-    "capturedUtc":  "2026-09-16T13:09:08.3802563Z",
+    "capturedUtc":  "2026-09-16T13:16:58.0902644Z",
     "generator":  "tools/capture-site.ps1",
     "pageCount":  16,
-    "imageCount":  42,
+    "imageCount":  43,
     "pages":  [
                   {
                       "url":  "https://www.faithbaptistraymore.org/",
@@ -125,27 +125,27 @@
                        "bytes":  2041
                    },
                    {
-                       "url":  "https://www.faithbaptistraymore.org/images/headers/1.-Master-Club.jpg#joomlaImage://local-images/headers/1.-Master-Club.jpg?width=980\u0026height=350",
+                       "url":  "https://www.faithbaptistraymore.org/images/headers/1.-Master-Club.jpg",
                        "file":  "images/headers/1.-Master-Club.jpg",
                        "bytes":  119569
                    },
                    {
-                       "url":  "https://www.faithbaptistraymore.org/images/headers/11.-tractor-pull.jpg#joomlaImage://local-images/headers/11.-tractor-pull.jpg?width=980\u0026height=350",
+                       "url":  "https://www.faithbaptistraymore.org/images/headers/11.-tractor-pull.jpg",
                        "file":  "images/headers/11.-tractor-pull.jpg",
                        "bytes":  160933
                    },
                    {
-                       "url":  "https://www.faithbaptistraymore.org/images/headers/15.-group-1.jpg#joomlaImage://local-images/headers/15.-group-1.jpg?width=980\u0026height=350",
+                       "url":  "https://www.faithbaptistraymore.org/images/headers/15.-group-1.jpg",
                        "file":  "images/headers/15.-group-1.jpg",
                        "bytes":  174289
                    },
                    {
-                       "url":  "https://www.faithbaptistraymore.org/images/headers/25.-Andersons.jpg#joomlaImage://local-images/headers/25.-Andersons.jpg?width=980\u0026height=350",
+                       "url":  "https://www.faithbaptistraymore.org/images/headers/25.-Andersons.jpg",
                        "file":  "images/headers/25.-Andersons.jpg",
                        "bytes":  128877
                    },
                    {
-                       "url":  "https://www.faithbaptistraymore.org/images/headers/26.-pastor.jpg#joomlaImage://local-images/headers/26.-pastor.jpg?width=980\u0026height=350",
+                       "url":  "https://www.faithbaptistraymore.org/images/headers/26.-pastor.jpg",
                        "file":  "images/headers/26.-pastor.jpg",
                        "bytes":  86892
                    },
@@ -173,6 +173,11 @@
                        "url":  "https://www.faithbaptistraymore.org/images/Pastor.jpg",
                        "file":  "images/Pastor.jpg",
                        "bytes":  52164
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/logo_final_whitetext.png",
+                       "file":  "images/logo_final_whitetext.png",
+                       "bytes":  428669
                    },
                    {
                        "url":  "https://www.faithbaptistraymore.org/images/Music.jpg",

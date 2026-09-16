@@ -1,0 +1,672 @@
+/* ==========================================================================
+   Faith Baptist Church of Raymore
+   Single stylesheet, mobile-first, no build step and no framework.
+   The navy is carried over from the previous site's footer (#0C1F38).
+   ========================================================================== */
+
+:root {
+  --navy-900: #081627;
+  --navy-800: #0c1f38;
+  --navy-700: #16314f;
+  --navy-600: #24466b;
+
+  --gold-500: #c8973f;
+  --gold-400: #d9ae5f;
+
+  --ink: #1b2430;
+  --ink-soft: #4a5666;
+  --rule: #e2e6ec;
+  --paper: #ffffff;
+  --paper-alt: #f6f7f9;
+
+  --wrap: 68rem;
+  --measure: 38rem;
+
+  --step-0: clamp(1rem, 0.97rem + 0.15vw, 1.075rem);
+  --step-1: clamp(1.2rem, 1.12rem + 0.4vw, 1.45rem);
+  --step-2: clamp(1.5rem, 1.32rem + 0.85vw, 2rem);
+  --step-3: clamp(1.9rem, 1.55rem + 1.6vw, 2.9rem);
+  --step-4: clamp(2.3rem, 1.6rem + 3.1vw, 4.1rem);
+
+  --shadow: 0 1px 2px rgb(8 22 39 / 6%), 0 8px 24px -12px rgb(8 22 39 / 18%);
+}
+
+/* --------------------------------------------------------------- reset ---- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: var(--step-0)/1.65 ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3, h4 {
+  margin: 0;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p { margin: 0; text-wrap: pretty; }
+
+a { color: var(--navy-600); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--navy-800); }
+
+:focus-visible {
+  outline: 3px solid var(--gold-500);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--navy-800);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+}
+.skip-link:focus { left: 0; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* -------------------------------------------------------------- header ---- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--navy-800);
+  color: #fff;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 4.5rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-right: auto;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* The logo already contains the church name, and its alt text gives the link
+   its accessible name, so there is no separate text form to swap in. */
+.brand__mark { height: 2.5rem; width: auto; }
+
+.nav ul {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav a {
+  display: block;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.375rem;
+  color: #dbe3ef;
+  font-size: 0.925rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.nav a:hover { background: rgb(255 255 255 / 9%); color: #fff; }
+.nav a[aria-current="page"] { color: #fff; box-shadow: inset 0 -2px 0 var(--gold-500); }
+
+.nav__cta {
+  margin-left: 0.5rem;
+  background: var(--gold-500);
+  color: var(--navy-900) !important;
+}
+.nav__cta:hover { background: var(--gold-400); }
+
+/* Checkbox-driven menu: no JavaScript, so nothing to fail or maintain. */
+.nav-toggle { position: absolute; opacity: 0; pointer-events: none; }
+
+.nav-toggle__btn {
+  display: grid;
+  gap: 5px;
+  padding: 0.6rem;
+  margin: -0.6rem;
+  cursor: pointer;
+}
+.nav-toggle__btn span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+@media (max-width: 54rem) {
+  .nav {
+    position: absolute;
+    inset: 100% 0 auto 0;
+    display: none;
+    background: var(--navy-900);
+    border-top: 1px solid rgb(255 255 255 / 10%);
+  }
+  .nav-toggle:checked ~ .nav { display: block; }
+  .nav ul { flex-direction: column; align-items: stretch; gap: 0; padding: 0.5rem 1.25rem 1rem; }
+  .nav a { padding: 0.8rem 0; border-radius: 0; font-size: 1.05rem; }
+  .nav a[aria-current="page"] { box-shadow: none; color: var(--gold-400); }
+  .nav__cta {
+    margin: 0.6rem 0 0;
+    text-align: center;
+    padding: 0.8rem 1rem !important;
+  }
+}
+
+@media (min-width: 54.0625rem) {
+  .nav-toggle__btn { display: none; }
+}
+
+/* ---------------------------------------------------------------- hero ---- */
+
+.hero {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: min(38rem, 72svh);
+  background: var(--navy-900);
+  color: #fff;
+  overflow: hidden;
+}
+
+.hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+/* Two stacked gradients: a global darkening for text contrast anywhere on the
+   image, plus a stronger foot so the headline block always clears WCAG AA. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgb(8 22 39 / 55%) 0%, rgb(8 22 39 / 25%) 45%, rgb(8 22 39 / 88%) 100%);
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  padding-block: 4rem 3rem;
+}
+
+.hero__verse {
+  max-width: 34rem;
+  margin-bottom: 2.25rem;
+  font-size: var(--step-1);
+  font-style: italic;
+  line-height: 1.45;
+  color: #e8edf5;
+}
+.hero__verse cite {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-400);
+}
+
+.hero h1 {
+  font-size: var(--step-4);
+  max-width: 26rem;
+}
+
+.hero__tagline {
+  margin-top: 1rem;
+  max-width: 32rem;
+  font-size: var(--step-1);
+  color: #cfd8e6;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+/* ------------------------------------------------------------- buttons ---- */
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 0.375rem;
+  font-size: 0.975rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.btn--primary { background: var(--gold-500); color: var(--navy-900); }
+.btn--primary:hover { background: var(--gold-400); color: var(--navy-900); }
+
+.btn--light { background: #fff; color: var(--navy-800); }
+.btn--light:hover { background: #eef1f6; color: var(--navy-900); }
+
+.btn--ghost { border-color: rgb(255 255 255 / 45%); color: #fff; }
+.btn--ghost:hover { background: rgb(255 255 255 / 12%); color: #fff; }
+
+.btn--outline { border-color: var(--navy-600); color: var(--navy-700); }
+.btn--outline:hover { background: var(--navy-800); border-color: var(--navy-800); color: #fff; }
+
+/* ------------------------------------------------------- service times ---- */
+
+.times { padding-block: 3.5rem; }
+
+.section-head { margin-bottom: 2rem; }
+.section-head__eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-500);
+  margin-bottom: 0.6rem;
+}
+.section-head h2 { font-size: var(--step-3); }
+.section-head p {
+  max-width: var(--measure);
+  margin-top: 0.75rem;
+  color: var(--ink-soft);
+  font-size: var(--step-1);
+}
+
+/* 12rem lets all five services sit on one row inside --wrap, instead of
+   wrapping to a 4 + 1 orphan. */
+.times__grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.time-card {
+  padding: 1.5rem;
+  background: var(--paper-alt);
+  border: 1px solid var(--rule);
+  border-radius: 0.625rem;
+}
+.time-card__day {
+  font-size: 0.775rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-500);
+}
+.time-card__time {
+  display: block;
+  margin: 0.35rem 0 0.15rem;
+  font-size: var(--step-2);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--navy-800);
+}
+.time-card__name { color: var(--ink-soft); }
+.time-card__note {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------ welcome/pastor ---- */
+
+.welcome {
+  padding-block: 3.5rem;
+  background: var(--paper-alt);
+  border-block: 1px solid var(--rule);
+}
+
+.welcome__grid {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 46rem) {
+  .welcome__grid { grid-template-columns: 18rem 1fr; gap: 3rem; }
+}
+
+.welcome__photo {
+  border-radius: 0.625rem;
+  box-shadow: var(--shadow);
+}
+
+.welcome__body > * + * { margin-top: 1.1rem; }
+.welcome__body p { max-width: var(--measure); }
+
+.signoff {
+  margin-top: 1.5rem !important;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.signoff strong { display: block; font-style: normal; color: var(--navy-800); }
+
+/* Pulls the five mission verbs out of the running text as a scannable list.
+   Deliberately single-column: each item is a sentence clause, and a multi-column
+   grid both fragments the reading order and leaves a ragged final row. */
+.mission-list {
+  display: grid;
+  gap: 0.5rem;
+  max-width: var(--measure);
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.mission-list li {
+  padding: 0.75rem 1rem;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--gold-500);
+  border-radius: 0.375rem;
+  font-size: 0.95rem;
+}
+.mission-list strong { color: var(--navy-800); }
+
+/* ----------------------------------------------------------- card grid ---- */
+
+.cards { padding-block: 3.5rem; }
+
+.cards__grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 0.625rem;
+  overflow: hidden;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+
+.card__img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
+
+.card__body { padding: 1.25rem; display: flex; flex-direction: column; flex: 1; }
+.card__body h3 { font-size: var(--step-1); }
+.card__body p { margin-top: 0.5rem; color: var(--ink-soft); font-size: 0.95rem; }
+
+.card__link {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  font-weight: 700;
+  font-size: 0.925rem;
+  text-decoration: none;
+}
+.card__link::after { content: " \2192"; }
+
+/* A whole card as one link target, without nesting interactive elements. */
+.card--link { position: relative; }
+.card--link .card__link::before { content: ""; position: absolute; inset: 0; }
+
+/* --------------------------------------------------------- watch strip ---- */
+
+.watch {
+  padding-block: 3.5rem;
+  background: var(--navy-800);
+  color: #fff;
+}
+.watch h2 { font-size: var(--step-3); }
+.watch p { max-width: var(--measure); margin-top: 0.75rem; color: #cfd8e6; }
+.watch__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+
+/* ----------------------------------------------------------- page head ---- */
+
+.page-head {
+  padding-block: 3rem 2.5rem;
+  background: var(--navy-800);
+  color: #fff;
+}
+.page-head__eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-400);
+  margin-bottom: 0.7rem;
+}
+.page-head h1 { font-size: var(--step-3); max-width: 30rem; }
+.page-head__lede {
+  max-width: var(--measure);
+  margin-top: 1rem;
+  font-size: var(--step-1);
+  color: #cfd8e6;
+}
+
+/* --------------------------------------------------------------- prose ---- */
+
+.prose { padding-block: 3rem; }
+.prose > * { max-width: var(--measure); }
+.prose > * + * { margin-top: 1.15rem; }
+
+.prose h2 {
+  max-width: var(--measure);
+  margin-top: 2.75rem;
+  font-size: var(--step-2);
+  color: var(--navy-800);
+}
+.prose h2:first-child { margin-top: 0; }
+
+.prose h3 {
+  max-width: var(--measure);
+  margin-top: 2rem;
+  font-size: var(--step-1);
+  color: var(--navy-800);
+}
+
+.prose img {
+  max-width: 100%;
+  width: 100%;
+  border-radius: 0.625rem;
+  margin-block: 2rem;
+}
+
+.prose blockquote {
+  margin: 2rem 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-left: 3px solid var(--gold-500);
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.prose blockquote p + p { margin-top: 0.85rem; }
+
+.prose ul, .prose ol { padding-left: 1.35rem; }
+.prose li + li { margin-top: 0.4rem; }
+
+.prose hr { margin-block: 2.5rem; border: 0; border-top: 1px solid var(--rule); }
+
+/* Scripture set apart from body copy. */
+.verse {
+  max-width: var(--measure);
+  padding: 1.25rem 1.5rem;
+  background: var(--paper-alt);
+  border-left: 3px solid var(--gold-500);
+  border-radius: 0 0.375rem 0.375rem 0;
+  font-style: italic;
+  color: var(--navy-700);
+}
+.verse cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* Wider-than-prose blocks inside .prose. */
+.prose .full-width { max-width: none; }
+
+/* --------------------------------------------------------------- staff ---- */
+
+.staff { display: grid; gap: 2.5rem; max-width: none !important; }
+
+.staff-member { display: grid; gap: 1.5rem; }
+
+@media (min-width: 42rem) {
+  .staff-member { grid-template-columns: 16rem 1fr; gap: 2rem; }
+}
+
+.staff-member__photo { border-radius: 0.625rem; box-shadow: var(--shadow); }
+.staff-member__name { font-size: var(--step-2); color: var(--navy-800); }
+.staff-member__role {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-500);
+}
+.staff-member__bio > * + * { margin-top: 1rem; }
+.staff-member__bio p { max-width: var(--measure); }
+.staff-member__contact {
+  margin-top: 1.25rem !important;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.95rem;
+}
+
+/* --------------------------------------------------------- visit page ---- */
+
+.visit-grid {
+  display: grid;
+  gap: 2.5rem;
+  max-width: none !important;
+}
+
+@media (min-width: 48rem) {
+  .visit-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+}
+
+.info-block + .info-block,
+.map-link + .info-block { margin-top: 2rem; }
+
+/* The times grid is not a direct .prose child, so it misses the flow spacing. */
+.prose .times__grid { margin-top: 1.25rem; }
+.prose .full-width + .visit-grid { margin-top: 3rem; }
+.info-block h2 { margin-top: 0 !important; font-size: var(--step-1) !important; }
+.info-block p { margin-top: 0.6rem; }
+.info-block address { font-style: normal; margin-top: 0.6rem; }
+
+.map-link { display: block; text-decoration: none; }
+.map-link img {
+  margin: 0 !important;
+  border: 1px solid var(--rule);
+  border-radius: 0.625rem;
+}
+.map-link span {
+  display: inline-block;
+  margin-top: 0.85rem;
+  font-weight: 700;
+  font-size: 0.925rem;
+}
+.map-link span::after { content: " \2192"; }
+
+/* ----------------------------------------------------------- visit CTA ---- */
+
+.visit-cta {
+  padding-block: 3rem;
+  background: var(--navy-800);
+  color: #fff;
+  text-align: center;
+}
+.visit-cta h2 { font-size: var(--step-2); }
+.visit-cta p { margin-top: 0.75rem; color: #cfd8e6; }
+.visit-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1.5rem !important;
+}
+
+/* -------------------------------------------------------------- footer ---- */
+
+.site-footer {
+  background: var(--navy-900);
+  color: #c3cddc;
+  font-size: 0.95rem;
+}
+
+.site-footer__grid {
+  display: grid;
+  gap: 2.25rem;
+  padding-block: 3rem 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.site-footer h2 {
+  margin-bottom: 0.9rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.site-footer a { color: #c3cddc; }
+.site-footer a:hover { color: #fff; }
+
+.site-footer p + p { margin-top: 0.8rem; }
+.footer-note { font-size: 0.85rem; color: #93a1b8; }
+.footer-svc strong { color: #fff; font-weight: 700; }
+
+.footer-links { margin: 0; padding: 0; list-style: none; }
+.footer-links li + li { margin-top: 0.5rem; }
+
+.site-footer__bar {
+  padding-block: 1.25rem;
+  border-top: 1px solid rgb(255 255 255 / 10%);
+  font-size: 0.85rem;
+  color: #8a99b1;
+}
+
+/* ------------------------------------------------------------- motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .card:hover { transform: none; }
+}

@@ -1,0 +1,47 @@
+---
+layout: layouts/base.njk
+title: Ministries
+description: "The ministries of Faith Baptist Church of Raymore: music, youth, children's ministry, Master Clubs, nursery, ladies ministry, and missions."
+---
+
+<div class="page-head">
+  <div class="wrap">
+    <p class="page-head__eyebrow">Ministries</p>
+    <h1>Serving every age, at home and abroad</h1>
+    <p class="page-head__lede">From the nursery to the Titus 2 Sisters Bible study to twenty supported missionaries around the world.</p>
+  </div>
+</div>
+
+<section class="cards">
+  <div class="wrap">
+    <div class="cards__grid">
+      {%- set ministries = [
+        { url: "/ministries/children-s-ministry/", img: "/assets/images/ChildrensMinistries.jpg", title: "Children's Ministry",
+          text: "Teaching children to know, defend, and live the truth of the gospel, alongside their parents." },
+        { url: "/ministries/children-s-ministry/master-clubs/", img: "/assets/images/Master-Clubs.jpg", title: "Master Clubs",
+          text: "A structured, fun Wednesday evening program where children learn Bible doctrine and earn badges." },
+        { url: "/ministries/children-s-ministry/nursery/", img: "/assets/images/children3.jpg", title: "Nursery",
+          text: "Ages 0-3. Clean, secure, and staffed by well-qualified volunteers at every worship service." },
+        { url: "/ministries/youth-ministry/", img: "/assets/images/YouthMinistries.jpg", title: "Youth Ministry",
+          text: "Junior high and high school teens, challenged by God's Word and changed by God's power." },
+        { url: "/ministries/music-ministry/", img: "/assets/images/Music.jpg", title: "Music Ministry",
+          text: "Congregational singing at the center, with words that are doctrinal, sound, and honoring to the Lord." },
+        { url: "/ministries/ladies-ministry/", img: "/assets/images/LadiesBanquet3.jpg", title: "Ladies Ministry",
+          text: "A place for every lady: Bible study, an annual banquet, a retreat, and many ways to serve." },
+        { url: "/ministries/missions/", img: "/assets/images/Missions.jpg", title: "Missions",
+          text: "Twenty supported missionaries, an annual missions conference, mission trips, and local outreach." }
+      ] -%}
+
+      {%- for item in ministries %}
+      <article class="card card--link">
+        <img class="card__img" src="{{ item.img }}" alt="" loading="lazy">
+        <div class="card__body">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+          <a class="card__link" href="{{ item.url }}">Learn more</a>
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
