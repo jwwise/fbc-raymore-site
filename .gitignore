@@ -1,0 +1,23 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Build output
+_site/
+dist/
+.cache/
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Local env
+.env
+.env.local

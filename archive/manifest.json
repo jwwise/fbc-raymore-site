@@ -1,0 +1,333 @@
+﻿{
+    "source":  "https://www.faithbaptistraymore.org",
+    "capturedUtc":  "2026-09-16T13:09:08.3802563Z",
+    "generator":  "tools/capture-site.ps1",
+    "pageCount":  16,
+    "imageCount":  42,
+    "pages":  [
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/",
+                      "status":  200,
+                      "title":  "Home - Faith Baptist Church",
+                      "file":  "html/index.html",
+                      "bytes":  28759
+                  },
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/sermons",
+                      "status":  200,
+                      "title":  "Sermons - Faith Baptist Church",
+                      "file":  "html/sermons.html",
+                      "bytes":  15988
+                  },
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/ministries",
+                      "status":  200,
+                      "title":  "Ministries - Faith Baptist Church",
+                      "file":  "html/ministries.html",
+                      "bytes":  19722
+                  },
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/ministries/music-ministry",
+                      "status":  200,
+                      "title":  "Music Ministry - Faith Baptist Church",
+                      "file":  "html/ministries/music-ministry.html",
+                      "bytes":  21461
+                  },
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/ministries/youth-ministry",
+                      "status":  200,
+                      "title":  "Youth Ministry - Faith Baptist Church",
+                      "file":  "html/ministries/youth-ministry.html",
+                      "bytes":  20733
+                  },
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/ministries/children-s-ministry",
+                      "status":  200,
+                      "title":  "Children\u0027s Ministry - Faith Baptist Church",
+                      "file":  "html/ministries/children-s-ministry.html",
+                      "bytes":  20886
+                  },
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/ministries/children-s-ministry/master-clubs",
+                      "status":  200,
+                      "title":  "Master Clubs - Faith Baptist Church",
+                      "file":  "html/ministries/children-s-ministry/master-clubs.html",
+                      "bytes":  20282
+                  },
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/ministries/children-s-ministry/nursery",
+                      "status":  200,
+                      "title":  "Nursery - Faith Baptist Church",
+                      "file":  "html/ministries/children-s-ministry/nursery.html",
+                      "bytes":  19869
+                  },
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/ministries/ladies-ministry",
+                      "status":  200,
+                      "title":  "Ladies Ministry - Faith Baptist Church",
+                      "file":  "html/ministries/ladies-ministry.html",
+                      "bytes":  21589
+                  },
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/ministries/missions",
+                      "status":  200,
+                      "title":  "Missions - Faith Baptist Church",
+                      "file":  "html/ministries/missions.html",
+                      "bytes":  21432
+                  },
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/about-us",
+                      "status":  200,
+                      "title":  "About Us - Faith Baptist Church",
+                      "file":  "html/about-us.html",
+                      "bytes":  19632
+                  },
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/about-us/meet-our-staff",
+                      "status":  200,
+                      "title":  "Meet Our Staff - Faith Baptist Church",
+                      "file":  "html/about-us/meet-our-staff.html",
+                      "bytes":  21906
+                  },
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/about-us/what-we-believe",
+                      "status":  200,
+                      "title":  "What We Believe - Faith Baptist Church",
+                      "file":  "html/about-us/what-we-believe.html",
+                      "bytes":  22683
+                  },
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/about-us/our-history",
+                      "status":  200,
+                      "title":  "Our History - Faith Baptist Church",
+                      "file":  "html/about-us/our-history.html",
+                      "bytes":  20280
+                  },
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/about-us/contact-form",
+                      "status":  200,
+                      "title":  "Contact Us - Faith Baptist Church",
+                      "file":  "html/about-us/contact-form.html",
+                      "bytes":  19964
+                  },
+                  {
+                      "url":  "https://www.faithbaptistraymore.org/search",
+                      "status":  200,
+                      "title":  "Search - Faith Baptist Church",
+                      "file":  "html/search.html",
+                      "bytes":  19644
+                  }
+              ],
+    "images":  [
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/favicon-32x32.png",
+                       "file":  "images/favicon-32x32.png",
+                       "bytes":  2041
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/headers/1.-Master-Club.jpg#joomlaImage://local-images/headers/1.-Master-Club.jpg?width=980\u0026height=350",
+                       "file":  "images/headers/1.-Master-Club.jpg",
+                       "bytes":  119569
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/headers/11.-tractor-pull.jpg#joomlaImage://local-images/headers/11.-tractor-pull.jpg?width=980\u0026height=350",
+                       "file":  "images/headers/11.-tractor-pull.jpg",
+                       "bytes":  160933
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/headers/15.-group-1.jpg#joomlaImage://local-images/headers/15.-group-1.jpg?width=980\u0026height=350",
+                       "file":  "images/headers/15.-group-1.jpg",
+                       "bytes":  174289
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/headers/25.-Andersons.jpg#joomlaImage://local-images/headers/25.-Andersons.jpg?width=980\u0026height=350",
+                       "file":  "images/headers/25.-Andersons.jpg",
+                       "bytes":  128877
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/headers/26.-pastor.jpg#joomlaImage://local-images/headers/26.-pastor.jpg?width=980\u0026height=350",
+                       "file":  "images/headers/26.-pastor.jpg",
+                       "bytes":  86892
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/modules/mod_djimageslider/themes/default/images/prev.png",
+                       "file":  "images//modules/mod_djimageslider/themes/default/images/prev.png",
+                       "bytes":  759
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/modules/mod_djimageslider/themes/default/images/next.png",
+                       "file":  "images//modules/mod_djimageslider/themes/default/images/next.png",
+                       "bytes":  771
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/modules/mod_djimageslider/themes/default/images/play.png",
+                       "file":  "images//modules/mod_djimageslider/themes/default/images/play.png",
+                       "bytes":  883
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/modules/mod_djimageslider/themes/default/images/pause.png",
+                       "file":  "images//modules/mod_djimageslider/themes/default/images/pause.png",
+                       "bytes":  613
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/Pastor.jpg",
+                       "file":  "images/Pastor.jpg",
+                       "bytes":  52164
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/Music.jpg",
+                       "file":  "images/Music.jpg",
+                       "bytes":  42497
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/ChildrensMinistries.jpg",
+                       "file":  "images/ChildrensMinistries.jpg",
+                       "bytes":  70386
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/YouthMinistries.jpg",
+                       "file":  "images/YouthMinistries.jpg",
+                       "bytes":  64817
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/Titus2Sisters.jpg",
+                       "file":  "images/Titus2Sisters.jpg",
+                       "bytes":  43492
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/Missions.jpg",
+                       "file":  "images/Missions.jpg",
+                       "bytes":  46920
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/SingspirationChoir.jpg",
+                       "file":  "images/SingspirationChoir.jpg",
+                       "bytes":  158639
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/Choir.jpg",
+                       "file":  "images/Choir.jpg",
+                       "bytes":  60161
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/Hymnal.jpg",
+                       "file":  "images/Hymnal.jpg",
+                       "bytes":  20370
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/CongregationSinging.jpg",
+                       "file":  "images/CongregationSinging.jpg",
+                       "bytes":  72510
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/TeenChoir.jpg",
+                       "file":  "images/TeenChoir.jpg",
+                       "bytes":  395992
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/TeensAtCamp.jpg",
+                       "file":  "images/TeensAtCamp.jpg",
+                       "bytes":  154003
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/VBS.jpg",
+                       "file":  "images/VBS.jpg",
+                       "bytes":  255660
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/children1.jpg",
+                       "file":  "images/children1.jpg",
+                       "bytes":  45937
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/children2.jpg",
+                       "file":  "images/children2.jpg",
+                       "bytes":  57512
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/children3.jpg",
+                       "file":  "images/children3.jpg",
+                       "bytes":  78609
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/Master-Clubs.jpg",
+                       "file":  "images/Master-Clubs.jpg",
+                       "bytes":  152303
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/LadiesBanquet3.jpg",
+                       "file":  "images/LadiesBanquet3.jpg",
+                       "bytes":  328300
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/Titus2Sisters.pjg.jpg",
+                       "file":  "images/Titus2Sisters.pjg.jpg",
+                       "bytes":  313345
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/Titus2SistersChristmas.jpg",
+                       "file":  "images/Titus2SistersChristmas.jpg",
+                       "bytes":  114250
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/missions1.jpg",
+                       "file":  "images/missions1.jpg",
+                       "bytes":  31670
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/missions_world.png",
+                       "file":  "images/missions_world.png",
+                       "bytes":  34999
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/missions2.jpg",
+                       "file":  "images/missions2.jpg",
+                       "bytes":  26444
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/MeetOurStaff.jpg",
+                       "file":  "images/MeetOurStaff.jpg",
+                       "bytes":  40682
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/WhatWeBelieve.jpg",
+                       "file":  "images/WhatWeBelieve.jpg",
+                       "bytes":  49338
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/OurHistory.jpg",
+                       "file":  "images/OurHistory.jpg",
+                       "bytes":  39888
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/ContactUs.jpg",
+                       "file":  "images/ContactUs.jpg",
+                       "bytes":  47731
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/WessbergFamily.jpg",
+                       "file":  "images/WessbergFamily.jpg",
+                       "bytes":  86612
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/Stephens.jpg",
+                       "file":  "images/Stephens.jpg",
+                       "bytes":  51907
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/bible-39.jpg",
+                       "file":  "images/bible-39.jpg",
+                       "bytes":  27564
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/Church.jpg",
+                       "file":  "images/Church.jpg",
+                       "bytes":  25925
+                   },
+                   {
+                       "url":  "https://www.faithbaptistraymore.org/images/Map.png",
+                       "file":  "images/Map.png",
+                       "bytes":  57623
+                   }
+               ]
+}
