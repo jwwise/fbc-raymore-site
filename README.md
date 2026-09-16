@@ -13,7 +13,9 @@ as plain static files.
 - [x] Content converted to Markdown
 - [x] Static site design decided — Eleventy, no JavaScript, GitHub Pages
 - [x] Static site built (15 pages)
-- [ ] Enable GitHub Pages on the repository (Settings → Pages → source: GitHub Actions)
+- [x] GitHub Pages enabled (source: GitHub Actions)
+- [ ] First push to `main`
+- [ ] Custom domain configured in Settings → Pages
 - [ ] Church review of content
 - [ ] DNS cut over
 

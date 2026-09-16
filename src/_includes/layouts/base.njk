@@ -22,6 +22,7 @@
   "name": "{{ church.nameFull }}",
   "url": "{{ church.url }}",
   "telephone": "{{ church.phone }}",
+  "email": "{{ church.email }}",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "{{ church.address.street }}",
@@ -80,7 +81,10 @@
         {{ church.address.street }}<br>
         {{ church.address.city }}, {{ church.address.stateAbbr }} {{ church.address.zip }}
       </p>
-      <p><a href="{{ church.phoneHref }}">{{ church.phone }}</a></p>
+      <p>
+        <a href="{{ church.phoneHref }}">{{ church.phone }}</a><br>
+        <a href="mailto:{{ church.email }}">{{ church.email }}</a>
+      </p>
       <p class="footer-note">
         Mail: {{ church.mailing.line }}<br>
         <em>{{ church.mailing.note }}</em>

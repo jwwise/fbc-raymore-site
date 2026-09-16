@@ -8,10 +8,14 @@ description: "Meet Pastor Michael Wessberg, senior pastor of Faith Baptist Churc
 ---
 
 {#
-  The previous site published both staff email addresses behind Joomla's
-  JavaScript spam cloak, so they could not be recovered from the captured HTML.
-  Add them here once the church supplies them; the phone number is unchanged
-  from the old site.
+  The old site cloaked both staff email addresses behind Joomla's JavaScript
+  spam filter, so neither survived the capture. The church supplied the
+  pastor's; a separate address for Jim Stephens is still outstanding, so his
+  block lists the church phone only.
+
+  The address is published as a plain mailto rather than an obfuscated one:
+  this site ships no JavaScript, and pastor@ is a role account rather than a
+  personal one, so it is the conventional thing to list publicly.
 #}
 
 <div class="staff">
@@ -32,6 +36,8 @@ description: "Meet Pastor Michael Wessberg, senior pastor of Faith Baptist Churc
       <p class="staff-member__contact">
         <strong>Contact Pastor Wessberg:</strong>
         <a href="{{ church.phoneHref }}">{{ church.phone }}</a>
+        &middot;
+        <a href="mailto:{{ church.email }}">{{ church.email }}</a>
       </p>
     </div>
   </article>

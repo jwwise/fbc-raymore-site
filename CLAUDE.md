@@ -38,9 +38,10 @@ Consequences worth remembering:
 - Site-wide facts (address, phone, service times, social links) live in **one** data file,
   `src/_data/church.json`, so a service-time change is a single edit. Never hard-code
   these into templates.
-- The sermon audio on the old Joomla host is **not preserved anywhere by this repo**. If
-  that host is cancelled, 1,609 recordings are lost unless they already exist on YouTube.
-  Raise this before any DNS cutover.
+- The sermon audio on the old Joomla host is not preserved by this repo. The church has
+  confirmed that **all recordings they care about keeping are already on YouTube**, so
+  retiring the old host is not a data-loss risk. Resolved 2026-09-16; no longer a blocker
+  for DNS cutover.
 
 ## Repository layout
 
@@ -102,6 +103,24 @@ The ~1,609 old `/sermons/sermon/...` URLs are **not** redirected — there are t
 many to enumerate. `/404.html` points those visitors at the YouTube channel
 instead.
 
+## Deployment
+
+GitHub Pages is enabled on the repo with **source: GitHub Actions**. Pushing to `main`
+runs `.github/workflows/deploy.yml`, which builds with Node 24 and uploads `_site/`.
+
+Custom domain notes — the part that trips people up:
+
+- Because this publishes from a **custom Actions workflow**, a `CNAME` file is *not*
+  required and *is ignored*: "If you are publishing from a custom GitHub Actions
+  workflow, no `CNAME` file is created, and any existing `CNAME` file is ignored and is
+  not required." Set the domain in **Settings → Pages** only. Do not add a `CNAME` to
+  `src/static/`; it would do nothing and mislead the next person.
+- `church.url` in `src/_data/church.json` is the base for canonical tags, `og:url`, and
+  `sitemap.xml`. It is set to `https://www.faithbaptistraymore.org`. While the site is
+  still served from `*.github.io`, those absolute URLs point at the not-yet-live domain.
+  That is harmless and self-corrects at cutover; if the final domain differs, change it
+  in that one place.
+
 ## Conventions for the new site
 
 - **No JavaScript.** The mobile menu is a checkbox-and-CSS toggle. Keep it that
@@ -123,8 +142,12 @@ Verify against the church before publishing — some of this is stale on the cur
 - Physical: 414 S. Franklin Street, Raymore, Missouri 64083
 - Mailing: PO Box 313, Raymore, MO 64083 — *mail is not accepted at the physical location*
 - Phone: (816) 322-0207
+- Email: pastor@faithbaptistraymore.org
 - The church bought 8.36 acres at E. Hubach Hill Rd. & S. Prairie Lane Rd. in July 2011
-  with the intent to relocate. The current site never says whether that happened.
+  intending to relocate. **That property was later sold** and the congregation still
+  meets on S. Franklin Street. The old site never reflected the sale, and the sale date
+  is still unknown — `src/about-us/our-history.njk` therefore states the sale without a
+  date. Add the date when the church supplies it; do not guess one.
 
 **Service times**
 - Sunday School — 9:30 am
@@ -137,11 +160,12 @@ Note: the homepage omits Master Clubs from the Wednesday list; the contact page 
 it. The contact page is assumed correct.
 
 **Staff**
-- Pastor Michael Wessberg (senior pastor since February 2016)
-- Jim Stephens, Music Director
+- Pastor Michael Wessberg (senior pastor since February 2016) — pastor@faithbaptistraymore.org
+- Jim Stephens, Music Director — no email address yet; his block lists the church phone only
 
-Both staff email addresses were cloaked by Joomla's spam filter and **could not be
-recovered** from the static HTML. They must be supplied by the church.
+Both staff email addresses were cloaked by Joomla's spam filter and could not be recovered
+from the static HTML. The church supplied the pastor's; **Jim Stephens' is still
+outstanding.**
 
 **Mission statement** — the five "I"s: *impact, instruct, include, involve, inspire*.
 
