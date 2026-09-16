@@ -33,9 +33,20 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build
+      # Must run before the build: it reports where Pages will actually serve
+      # this site, which the build needs in order to write correct URLs.
+      - id: pages
+        uses: actions/configure-pages@v5
 
-      - uses: actions/configure-pages@v5
+      # While this is a project site the origin is <owner>.github.io and the
+      # prefix is /fbc-raymore-site/. Once the custom domain is set in
+      # Settings -> Pages, configure-pages reports www.faithbaptistraymore.org
+      # with a prefix of /, and the same build becomes the production site --
+      # including dropping the preview noindex. No code change at cutover.
+      - run: npm run build
+        env:
+          BASE_ORIGIN: ${{ steps.pages.outputs.origin }}
+          PATH_PREFIX: ${{ steps.pages.outputs.base_path }}
 
       - uses: actions/upload-pages-artifact@v3
         with:

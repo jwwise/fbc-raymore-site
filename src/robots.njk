@@ -1,0 +1,16 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+---
+{%- if site.isProduction -%}
+User-agent: *
+Allow: /
+
+Sitemap: {{ "/sitemap.xml" | absoluteUrl(site.baseUrl) }}
+{%- else -%}
+# Preview build served from {{ site.baseUrl }} — not the live church site.
+# Crawling is disallowed so this copy cannot compete with
+# {{ church.url }} for the same content.
+User-agent: *
+Disallow: /
+{%- endif %}

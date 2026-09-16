@@ -5,7 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% if title %}{{ title }} &middot; {{ church.name }}{% else %}{{ church.name }} of Raymore, Missouri{% endif %}</title>
 <meta name="description" content="{{ description or church.tagline }}">
-<link rel="canonical" href="{{ page.url | absoluteUrl(church.url) }}">
+<link rel="canonical" href="{{ page.url | absoluteUrl(site.baseUrl) }}">
+{%- if not site.isProduction %}
+{# Preview build on github.io: keep it out of search so it cannot compete with
+   the real church site for the same content. See src/_data/site.js. #}
+<meta name="robots" content="noindex, nofollow">
+{%- endif %}
 <link rel="icon" href="/assets/images/favicon-32x32.png" sizes="32x32">
 <link rel="stylesheet" href="/assets/css/site.css">
 
@@ -13,7 +18,7 @@
 <meta property="og:site_name" content="{{ church.nameFull }}">
 <meta property="og:title" content="{% if title %}{{ title }} &middot; {{ church.name }}{% else %}{{ church.nameFull }}{% endif %}">
 <meta property="og:description" content="{{ description or church.tagline }}">
-<meta property="og:url" content="{{ page.url | absoluteUrl(church.url) }}">
+<meta property="og:url" content="{{ page.url | absoluteUrl(site.baseUrl) }}">
 
 <script type="application/ld+json">
 {

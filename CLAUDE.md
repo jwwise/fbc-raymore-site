@@ -51,9 +51,13 @@ Consequences worth remembering:
 | `src/_data/church.json` | Every site-wide fact: address, phone, service times, social links. |
 | `src/_data/redirects.json` | Old Joomla URLs → new URLs, rendered as meta-refresh stubs. |
 | `src/_includes/layouts/` | `base.njk` (shell), `page.njk` (prose pages), `redirect.njk`. |
+| `src/_data/site.js` | Derives where this build is served from (see Deployment). |
 | `src/assets/` | CSS and images, copied through verbatim. |
-| `src/static/` | Files served from the site root (`robots.txt`, `.nojekyll`). |
-| `eleventy.config.mjs` | Build config and the `groupByDay` / `serviceTime` / `absoluteUrl` filters. |
+| `src/static/` | Files served from the site root (`.nojekyll`). |
+| `src/robots.njk` | Generates `robots.txt`; differs between preview and production. |
+| `src/sitemap.njk` | Generates `sitemap.xml`. |
+| `eleventy.config.mjs` | Build config, `HtmlBasePlugin`, and the `groupByDay` / `serviceTime` / `absoluteUrl` filters. |
+| `tools/run-with-env.mjs` | Portable `VAR=x cmd` for the preview npm scripts. |
 | `archive/html/` | Raw HTML of every page of the live Joomla site, as captured. **Read-only reference.** |
 | `archive/images/` | Every image referenced by those pages (43 files). |
 | `archive/manifest.json` | Crawl metadata: URLs, HTTP status, titles, byte counts. |
@@ -108,18 +112,57 @@ instead.
 GitHub Pages is enabled on the repo with **source: GitHub Actions**. Pushing to `main`
 runs `.github/workflows/deploy.yml`, which builds with Node 24 and uploads `_site/`.
 
-Custom domain notes — the part that trips people up:
+### Two serving locations, one build
 
-- Because this publishes from a **custom Actions workflow**, a `CNAME` file is *not*
-  required and *is ignored*: "If you are publishing from a custom GitHub Actions
-  workflow, no `CNAME` file is created, and any existing `CNAME` file is ignored and is
-  not required." Set the domain in **Settings → Pages** only. Do not add a `CNAME` to
-  `src/static/`; it would do nothing and mislead the next person.
-- `church.url` in `src/_data/church.json` is the base for canonical tags, `og:url`, and
-  `sitemap.xml`. It is set to `https://www.faithbaptistraymore.org`. While the site is
-  still served from `*.github.io`, those absolute URLs point at the not-yet-live domain.
-  That is harmless and self-corrects at cutover; if the final domain differs, change it
-  in that one place.
+The site is served from a subpath while in preview and from the root once the custom
+domain is live:
+
+| Stage | URL |
+| --- | --- |
+| Preview (now) | `https://faithbaptistraymore.github.io/fbc-raymore-site/` |
+| Production (later) | `https://www.faithbaptistraymore.org/` |
+
+**Nothing needs to change in the repo at cutover.** The workflow runs
+`actions/configure-pages` *before* the build and passes what it reports into the build:
+
+```yaml
+env:
+  BASE_ORIGIN: ${{ steps.pages.outputs.origin }}
+  PATH_PREFIX: ${{ steps.pages.outputs.base_path }}
+```
+
+`src/_data/site.js` turns those into `site.baseUrl`, `site.pathPrefix`, and
+`site.isProduction`. Setting the custom domain in Settings → Pages changes what
+`configure-pages` reports, and the next build picks it up.
+
+Three consequences to understand before changing any of this:
+
+- **Templates must keep writing plain root-relative paths** (`/assets/...`, `/visit/`).
+  `HtmlBasePlugin` rewrites them all to sit under `pathPrefix` at build time. Do not
+  hand-prefix URLs in templates — it would double up once the prefix is `/`.
+- **`site.baseUrl`, never `church.url`**, for canonical tags, `og:url`, and
+  `sitemap.xml`. `church.url` is the church's permanent public address and is what
+  `isProduction` compares against; it is not necessarily where this build is served.
+- **The preview is deliberately `noindex` plus `Disallow: /`** so the github.io copy
+  cannot compete with the real church site for the same content. This is derived, not
+  configured: it flips to indexable on its own when the origin matches `church.url`.
+  Don't "fix" the missing sitemap on the preview — it is intentional.
+
+Build locally for either target:
+
+```powershell
+npm run build                     # production, served at the root
+npm run build:preview             # subpath build, noindex
+npm run serve:preview             # http://localhost:8080/fbc-raymore-site/
+```
+
+### Custom domain
+
+Because this publishes from a **custom Actions workflow**, a `CNAME` file is *not*
+required and *is ignored*: "If you are publishing from a custom GitHub Actions workflow,
+no `CNAME` file is created, and any existing `CNAME` file is ignored and is not
+required." Set the domain in **Settings → Pages** only. Do not add a `CNAME` to
+`src/static/`; it would do nothing and mislead the next person.
 
 ## Conventions for the new site
 

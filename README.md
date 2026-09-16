@@ -19,14 +19,32 @@ as plain static files.
 - [ ] Church review of content
 - [ ] DNS cut over
 
+## Where it's served
+
+| Stage | URL |
+| --- | --- |
+| Preview | <https://faithbaptistraymore.github.io/fbc-raymore-site/> |
+| Production | <https://www.faithbaptistraymore.org/> (after DNS cutover) |
+
+The same build works for both. `actions/configure-pages` reports the real origin and
+path prefix, the workflow passes them to the build, and every URL adjusts. Setting the
+custom domain in **Settings → Pages** is the only step at cutover — no code change, and
+no `CNAME` file (Actions-published sites ignore it).
+
+The preview is intentionally `noindex` with `Disallow: /` so it can't compete with the
+live church site in search. That flips automatically once the custom domain is active.
+
 ## Building
 
 Requires Node 18 or newer.
 
 ```powershell
 npm install
-npm run build     # -> _site/
-npm run serve     # preview at http://localhost:8080
+npm run build           # production build -> _site/
+npm run serve           # http://localhost:8080
+
+npm run build:preview   # subpath build, as GitHub Pages serves it today
+npm run serve:preview   # http://localhost:8080/fbc-raymore-site/
 ```
 
 Pushing to `main` builds and publishes automatically via

@@ -4,10 +4,21 @@
  * Output is plain static files in _site/, deployable to GitHub Pages with no
  * server-side anything. See CLAUDE.md for the constraints behind that.
  */
+import { HtmlBasePlugin } from '@11ty/eleventy';
+
+const PATH_PREFIX = `/${String(process.env.PATH_PREFIX ?? '/').replace(/^\/+|\/+$/g, '')}/`.replace('//', '/');
+
 export default function (eleventyConfig) {
   // Assets are copied through untouched — no asset pipeline to break.
   eleventyConfig.addPassthroughCopy({ 'src/assets': 'assets' });
   eleventyConfig.addPassthroughCopy({ 'src/static': '.' });
+
+  /**
+   * Rewrites every root-relative URL in the output HTML to sit under
+   * `pathPrefix`. This is what lets templates keep writing plain `/assets/...`
+   * and `/visit/` while the site is served from a subpath on GitHub Pages.
+   */
+  eleventyConfig.addPlugin(HtmlBasePlugin);
 
   eleventyConfig.addWatchTarget('src/assets/css/');
 
@@ -37,10 +48,21 @@ export default function (eleventyConfig) {
     return services.find((s) => s.name === name)?.time ?? '';
   });
 
-  /** Absolute URL for canonical tags and social metadata. */
-  eleventyConfig.addFilter('absoluteUrl', (path, base) => new URL(path, base).href);
+  /**
+   * Absolute URL for canonical tags, og:url and the sitemap.
+   *
+   * `base` already carries the path prefix (e.g. ".../fbc-raymore-site/"), and
+   * `page.url` is root-absolute ("/visit/"). Passing those straight to `new URL`
+   * would discard the prefix, so the leading slash is stripped first to make it
+   * a relative resolve.
+   */
+  eleventyConfig.addFilter('absoluteUrl', (path, base) => {
+    const root = String(base).endsWith('/') ? String(base) : `${base}/`;
+    return new URL(String(path).replace(/^\/+/, ''), root).href;
+  });
 
   return {
+    pathPrefix: PATH_PREFIX,
     dir: {
       input: 'src',
       output: '_site',

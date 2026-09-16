@@ -10,6 +10,8 @@
   "scripts": {
     "build": "eleventy",
     "serve": "eleventy --serve",
+    "build:preview": "node tools/run-with-env.mjs BASE_ORIGIN=https://faithbaptistraymore.github.io PATH_PREFIX=/fbc-raymore-site/ -- eleventy",
+    "serve:preview": "node tools/run-with-env.mjs BASE_ORIGIN=https://faithbaptistraymore.github.io PATH_PREFIX=/fbc-raymore-site/ -- eleventy --serve",
     "capture": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/capture-site.ps1",
     "extract": "node tools/extract-content.mjs"
   },
